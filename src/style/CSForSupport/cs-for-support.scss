@@ -17,6 +17,20 @@
 .Contacts {
     width: 750px;
     height: 600px;
+    overflow: auto;
+    position: relative;
+
+    .menu {
+        position: absolute;
+        display: none;
+        background: #fff;
+        z-index: 5;
+
+        .menu-item {
+            width: 130px;
+            height: 50px;
+        }
+    }
 }
 
 .ContactItem {

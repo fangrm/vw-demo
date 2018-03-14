@@ -4,7 +4,7 @@
             <img src="../../assets/default-avatar.jpg" alt="头像">
         </div>
         <div class="center">
-            <p class="name">普通用户</p>
+            <p class="name">{{ contactData.name }}</p>
             <p class="latest-msg">
                 <!--<span class="msg-from"></span>-->
                 <span class="msg-content">最新消息</span>
@@ -20,6 +20,14 @@
 <script>
     export default {
         name: 'ContactItem',
+
+        props: {
+            contactData: {
+                type: Object,
+                required: true,
+            },
+        },
+
         data () {
             return {
                 contactList: [],
