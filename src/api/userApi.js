@@ -13,13 +13,7 @@ const userApi = {
     },
 
     getLoginInfo() {
-        ajaxSendPromise(POST, 'app/user/getIdcard').then((res) => {
-            if (res.status_code === 200) {
-
-            }
-        }).catch(() => {
-
-        });
+        return ajaxSendPromise(POST, 'app/user/logininfo');
     },
 };
 

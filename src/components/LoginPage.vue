@@ -46,12 +46,19 @@
                     password: this.password,
                 }).then(() => {
                     console.log('login - login page');
+                    this.$store.dispatch(actionTypes.GET_USERINFO).then((res) => {
+                        if (res.status === 200) {
+                            this.$router.push({
+                                path: '/cs-for-support',
+                            });
+                        }
+                    });
                 });
             },
         },
     }
-</script>
+</script>s
 
 <style lang="scss" scoped>
-
+    @import '../style/login-page';
 </style>

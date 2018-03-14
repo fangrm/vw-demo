@@ -1,0 +1,27 @@
+.login-page {
+    width: 100%;
+    height: 1334px;
+    overflow: hidden;
+
+    .logo-wrapper {
+        img {
+            width: 200px;
+            height: 150px;
+        }
+    }
+
+    .login-input {
+        span {
+            width: 70px;
+        }
+        input {
+            width: 250px;
+        }
+        .account {
+
+        }
+        .password {
+
+        }
+    }
+}
