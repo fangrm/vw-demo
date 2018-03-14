@@ -23,5 +23,5 @@
 </script>
 
 <style lang="scss" scoped>
-
+    @import "../../style/CSForSupport/cs-for-support";
 </style>

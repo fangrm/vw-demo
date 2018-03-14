@@ -10,8 +10,8 @@ export default new Router({
     routes: [
         {
             path: '/',
-            name: 'LoginPage',
-            component: LoginPage,
+            name: 'CSForSupport',
+            component: CSForSupport,
         }, {
             path: '/cs-for-support',
             name: 'CSForSupport',

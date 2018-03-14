@@ -1,7 +1,7 @@
 <template>
     <div class="wrapper">
         <div class="main">
-
+            <contacts></contacts>
         </div>
         <div class="loading-layer">
             <img src="../../assets/loading.png" alt="正在加载">
@@ -11,8 +11,15 @@
 </template>
 
 <script>
+    import Contacts from './Contacts.vue';
+
     export default {
         name: 'CSForSupport',
+
+        components: {
+            'Contacts': Contacts,
+        },
+
         data () {
             return {
                 contactList: [],
