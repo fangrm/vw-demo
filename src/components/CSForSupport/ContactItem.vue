@@ -1,5 +1,5 @@
 <template>
-    <div class="ContactItem">
+    <div class="ContactItem" @click="goToCommunicatePanel">
         <div class="avatar">
             <img src="../../assets/default-avatar.jpg" alt="头像">
         </div>
@@ -18,6 +18,8 @@
 </template>
 
 <script>
+    import * as actionType from '../../store/action-types/CSForSupport';
+
     export default {
         name: 'ContactItem',
 
@@ -33,6 +35,12 @@
                 contactList: [],
             }
         },
+
+        methods: {
+            goToCommunicatePanel() {
+                this.$store.dispatch(actionType.CLICK_CONTACT, this.contactData);
+            },
+        }
     }
 </script>
 

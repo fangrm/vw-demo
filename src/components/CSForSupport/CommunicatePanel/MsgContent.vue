@@ -1,15 +1,33 @@
 <template>
     <div class="MsgContent">
-        <div class="msg-wrapper" v-for="(msg, index) in msgList">
+        <div class="msg-wrapper" v-for="(msg, index) in msgList" key="msg.msgId">
             <div class="msg v-c" v-if="msg.sendType === 'v-c'">
-                <p class="text" v-if="msg.type === 'text'">{{ msg.content }}</p>
-                <p class="emoji" v-else-if="msg.type === 'emoji'">{{ msg.content }}</p>
-                <img class="picture" v-else-if="msg.type === 'pic'" :src="msg.content" />
+                <div class="text" v-if="msg.type === 'text'">
+                    <img src="###" alt="用户头像" class="avatar">
+                    <p class="content">
+                        {{ msg.content }}
+                    </p>
+                </div>
+                <div class="emoji" v-else-if="msg.type === 'emoji'">
+                    <p class="content">
+                        {{ msg.content }}
+                    </p>
+                    <img src="###" alt="" class="avatar">
+                </div>
             </div>
             <div class="msg c-v" v-else-if="msg.sendType === 'c-v'">
-                <p class="text" v-if="msg.type === 'text'">{{ msg.content }}</p>
-                <p class="emoji" v-else-if="msg.type === 'emoji'">{{ msg.content }}</p>
-                <img class="picture" v-else-if="msg.type === 'pic'" :src="msg.content" />
+                <div class="text" v-if="msg.type === 'text'">
+                    <img src="###" alt="用户头像" class="avatar">
+                    <p class="content">
+                        {{ msg.content }}
+                    </p>
+                </div>
+                <div class="emoji" v-else-if="msg.type === 'emoji'">
+                    <p class="content">
+                        {{ msg.content }}
+                    </p>
+                    <img src="###" alt="" class="avatar">
+                </div>
             </div>
             <div class="system-msg" v-else-if="msg.sendType === 'system'">
                 <p class="content">{{ msg.content }}</p>
@@ -36,31 +54,7 @@
 
         data () {
             return {
-                msgList: [
-                    {
-                        content: 1,
-                        type: 'msg',
-                        sendType: 'v-c',
-                    }, {
-                        name: 2,
-                    }, {
-                        name: 3,
-                    }, {
-                        name: 4,
-                    }, {
-                        name: 5,
-                    }, {
-                        name: 6,
-                    }, {
-                        name: 7,
-                    }, {
-                        name: 8,
-                    }, {
-                        name: 9,
-                    }, {
-                        name: 10,
-                    },
-                ],
+
             }
         }
     }

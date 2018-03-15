@@ -1,12 +1,40 @@
 import * as mutaTypes from './mutation-types/CSForSupport';
 import * as actionTypes from './action-types/CSForSupport';
+import * as UITypes from './mutation-types/CSForSupportUI';
 import UserApi from '../api/userApi';
+import CSApi from '../api/CSApi';
 
 const state = {
-    loginInfo: {},
+    loginInfo: null,
+    msgStore: {},
+    historyStore: {},
+
+    focusUser: null,
+
+    loadingShow: false,
+    loadingText: '',
+
+    // UI state
+    communicatePanelShow: false,
+};
+
+const mutations_ui = {
+    [UITypes.CommunicatePanelShow] (state, {isShow}) {
+        state.communicatePanelShow = isShow;
+    },
 };
 
 const mutations = {
+    [mutaTypes.LOADING_SHOW] (state, payload) {
+        state.loadingShow = true;
+        state.loadingText = payload;
+    },
+    [mutaTypes.LOADING_HIDDEN] (state) {
+        state.loadingShow = false;
+        state.loadingText = '';
+    },
+
+
     [mutaTypes.LOGIN_SUCCESS] (state, payload) {
         console.log(payload);
     },
@@ -17,16 +45,31 @@ const mutations = {
         if (payload.status_code === 200) {
             state.loginInfo = payload.data;
         } else {
-            state.loginInfo = undefined;
+            state.loginInfo = null;
         }
     },
 
+    [mutaTypes.FOCUS_USER] (state, payload) {
+        state.focusUser = payload;
+    },
+
+    [mutaTypes.GET_HISTORY_RES] (state, {userData, msgList}) {
+        state.historyStore[userData.user_id] = msgList;
+    },
+
+    [mutaTypes.CHANGE_MSG_STORE] (state, {userData, msg}) {
+        if (state.msgStore[userData.user_id] === undefined) {
+            state.msgStore[userData.user_id] = [...state.historyStore[userData.user_id]];
+        } else {
+            state.msgStore[userData.user_id] = state.msgStore[userData.user_id].push(...msg);
+        }
+    },
 };
 
 const actions = {
-    [actionTypes.GET_LOGIN] ({commit, state}, payload) {
+    [actionTypes.GET_LOGIN] ({dispatch, commit, state}, payload) {
         UserApi.getUserLogin(payload).then((res) => {
-            commit(mutaTypes.LOGIN_SUCCESS, res);
+            dispatch(actionTypes.GET_USERINFO);
         }).catch(() => {
             commit(mutaTypes.LOGIN_FAILED);
             console.log('login failed');
@@ -34,11 +77,43 @@ const actions = {
     },
     [actionTypes.GET_USERINFO] ({commit, state}) {
         UserApi.getLoginInfo().then((res) => {
-            commit(mutaTypes.GET_USERINFO, res);
+            commit(mutaTypes.LOGIN_SUCCESS, res);
         }).catch(() => {
-
+            commit(mutaTypes.LOGIN_FAILED);
         });
-    }
+    },
+
+    async [actionTypes.CLICK_CONTACT] ({dispatch, commit, state}, contactData) {
+        // TODO: connectUser
+        commit(mutaTypes.LOADING_SHOW, '正在连接用户...');
+
+        // 加载历史消息记录
+        commit(mutaTypes.LOADING_SHOW, '正在加载过往消息记录...');
+        if (state.historyStore[payload.user_id] === undefined) {
+            await dispatch(actionTypes.GET_HISTORY, contactData)
+        }
+
+        // 初始化消息队列
+        commit(mutaTypes.CHANGE_MSG_STORE, {contactData});
+        // 控制对话面板出现
+        commit(UITypes.CommunicatePanelShow, {
+            isShow: true,
+        });
+
+        commit(mutaTypes.LOADING_HIDDEN);
+    },
+
+    [actionTypes.GET_HISTORY] ({commit, state}, contactData) {
+        CSApi.getChatRecord(contactData).then((res) => {
+            if (res.status_code === 200) {
+                commit(mutaTypes.GET_HISTORY_RES, res.data);
+            } else {
+                commit(mutaTypes.GET_HISTORY_RES, undefined);
+            }
+        });
+    },
+
+
 };
 
 

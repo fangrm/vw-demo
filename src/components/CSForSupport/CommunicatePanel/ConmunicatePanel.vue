@@ -1,6 +1,8 @@
 <template>
     <div class="CommunicatePanel">
-        <msg-content></msg-content>
+        <msg-content
+            :msgList="msgList"
+        ></msg-content>
         <msg-input></msg-input>
     </div>
 </template>
@@ -19,27 +21,57 @@
 
         data () {
             return {
-                contactList: [
+                msgList: [
                     {
-                        name: 1,
+                        content: 1,
+                        type: 'msg',
+                        sendType: 'v-c',
+                        msgId: 1,
                     }, {
-                        name: 2,
+                        content: 1,
+                        type: 'msg',
+                        sendType: 'c-v',
+                        msgId: 2,
                     }, {
-                        name: 3,
+                        content: 1,
+                        type: 'msg',
+                        sendType: 'v-c',
+                        msgId: 3,
                     }, {
-                        name: 4,
+                        content: 1,
+                        type: 'msg',
+                        sendType: 'v-c',
+                        msgId: 4,
                     }, {
-                        name: 5,
+                        content: 1,
+                        type: 'msg',
+                        sendType: 'v-c',
+                        msgId: 5,
                     }, {
-                        name: 6,
+                        content: 1,
+                        type: 'msg',
+                        sendType: 'v-c',
+                        msgId: 6,
                     }, {
-                        name: 7,
+                        content: 1,
+                        type: 'msg',
+                        sendType: 'v-c',
+                        msgId: 7,
                     }, {
-                        name: 8,
+                        content: 1,
+                        type: 'msg',
+                        sendType: 'v-c',
+                        msgId: 8,
                     }, {
-                        name: 9,
+                        content: 1,
+                        type: 'msg',
+                        sendType: 'v-c',
+                        msgId: 9,
                     }, {
-                        name: 10,
+                        content: 1,
+                        type: 'msg',
+                        sendType: 'v-c',
+                        msgId: 10,
                     },
                 ],
             }

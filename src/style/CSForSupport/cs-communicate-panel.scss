@@ -1,0 +1,84 @@
+.CommunicatePanel {
+    width: 750px;
+    height: 1334px;
+}
+
+.MsgContent {
+    width: 100%;
+    height: 500px;
+
+    .msg-wrapper {
+        width: 100%;
+
+        .msg {
+            .content {
+                display: inline-block;
+                max-width: 40%;
+                padding: 11px 14px;
+            }
+        }
+
+        .v-c {
+            width: 100%;
+            margin: 15px 0;
+            .text {
+                text-align: right;
+                .avatar{
+                    display: inline-block;
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 4px;
+                }
+                .content {
+                    position: relative;
+                    background: #f1f1f1;
+                    margin-right: 16px;
+                    word-break: break-all;
+                    vertical-align: top;
+                    text-align: left;
+                    &:before {
+                        width: 10px;
+                        height: 20px;
+                        //content: '.'
+                        position: absolute;
+                        top: 10px;
+                        right: -10px;
+                    }
+                }
+            }
+            .emoji {
+
+            }
+        }
+
+        .c-v {
+            width: 100%;
+            margin: 15px 0;
+            .text {
+                text-align: left;
+                .avatar{
+                    display: inline-block;
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 4px;
+                }
+                .content {
+                    position: relative;
+                    background: #FFC451;
+                    margin-left: 16px;
+                    word-break: break-all;
+                    vertical-align: top;
+                    text-align: left;
+                    &:before {
+                        width: 10px;
+                        height: 20px;
+                        //content: '.'
+                        position: absolute;
+                        top: 10px;
+                        left: -10px;
+                    }
+                }
+            }
+        }
+    }
+}
