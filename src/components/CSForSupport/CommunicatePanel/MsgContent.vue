@@ -1,6 +1,6 @@
 <template>
     <div class="MsgContent">
-        <div class="msg-wrapper" v-for="(msg, index) in msgList" key="msg.msgId">
+        <div class="msg-wrapper" v-for="(msg, index) in msgList" :key="msg.msgId">
             <div class="msg v-c" v-if="msg.sendType === 'v-c'">
                 <div class="text" v-if="msg.type === 'text'">
                     <img src="###" alt="用户头像" class="avatar">
@@ -40,6 +40,14 @@
 
     export default {
         name: 'MsgContent',
+
+        created() {
+
+        },
+
+        mounted() {
+
+        },
 
         props: {
             msgList: {

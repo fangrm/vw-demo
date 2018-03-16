@@ -14,9 +14,22 @@
     }
 }
 
+.CSForSupport {
+    width: 1500px;
+    height: 1000px;
+    overflow: hidden;
+
+    .main {
+        display: flex;
+        align-items: stretch;
+    }
+
+}
+
 .Contacts {
+    display: inline-block;
     width: 750px;
-    height: 600px;
+    height: 900px;
     overflow: auto;
     position: relative;
 

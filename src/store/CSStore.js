@@ -1,11 +1,12 @@
 import * as mutaTypes from './mutation-types/CSForSupport';
 import * as actionTypes from './action-types/CSForSupport';
-import * as UITypes from './mutation-types/CSForSupportUI';
+//import * as UITypes from './mutation-types/CSForSupportUI';
 import UserApi from '../api/userApi';
 import CSApi from '../api/CSApi';
 
 const state = {
     loginInfo: null,
+    loginId: null,
     msgStore: {},
     historyStore: {},
 
@@ -19,9 +20,7 @@ const state = {
 };
 
 const mutations_ui = {
-    [UITypes.CommunicatePanelShow] (state, {isShow}) {
-        state.communicatePanelShow = isShow;
-    },
+
 };
 
 const mutations = {
@@ -64,6 +63,13 @@ const mutations = {
             state.msgStore[userData.user_id] = state.msgStore[userData.user_id].push(...msg);
         }
     },
+
+    // ---------------------------
+    [mutaTypes.CommunicatePanelShow] (state, {isShow}) {
+        state.communicatePanelShow = isShow;
+    },
+
+
 };
 
 const actions = {
@@ -83,20 +89,40 @@ const actions = {
         });
     },
 
+    [actionTypes.LOGIN_CS] ({commit, state}) {
+
+            CSApi.getAllowKey().then((res) => {
+                if(res && res.level === 'success'){
+                    CSApi.getLoginId(res.data).then((res) => {
+                        if(res && res.level === 'success'){
+                            //satate.loginId = res.auth_key;
+                        } else {
+                            //alert('checkAuthKey API ERROR');
+                            //resolve(false);
+                        }
+                    })
+                } else {
+                    //alert('getAllowKey API ERROR');
+                    //resolve(false);
+                }
+            });
+
+    },
+
     async [actionTypes.CLICK_CONTACT] ({dispatch, commit, state}, contactData) {
         // TODO: connectUser
         commit(mutaTypes.LOADING_SHOW, '正在连接用户...');
 
         // 加载历史消息记录
-        commit(mutaTypes.LOADING_SHOW, '正在加载过往消息记录...');
-        if (state.historyStore[payload.user_id] === undefined) {
-            await dispatch(actionTypes.GET_HISTORY, contactData)
-        }
+        // commit(mutaTypes.LOADING_SHOW, '正在加载过往消息记录...');
+        // if (state.historyStore[contactData.user_id] === undefined) {
+        //     await dispatch(actionTypes.GET_HISTORY, contactData)
+        // }
 
         // 初始化消息队列
-        commit(mutaTypes.CHANGE_MSG_STORE, {contactData});
+        // commit(mutaTypes.CHANGE_MSG_STORE, {contactData});
         // 控制对话面板出现
-        commit(UITypes.CommunicatePanelShow, {
+        commit(mutaTypes.CommunicatePanelShow, {
             isShow: true,
         });
 

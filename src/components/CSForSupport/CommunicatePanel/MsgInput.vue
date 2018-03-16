@@ -1,6 +1,15 @@
 <template>
     <div class="MsgInput">
+        <div class="function-btns">
 
+        </div>
+
+        <textarea
+            class='im-input'
+            placeholder='请输入信息，并按 Enter 发送'
+            :value="inputValue"
+        >
+        </textarea>
     </div>
 </template>
 
@@ -15,34 +24,12 @@
 
         data () {
             return {
-                contactList: [
-                    {
-                        name: 1,
-                    }, {
-                        name: 2,
-                    }, {
-                        name: 3,
-                    }, {
-                        name: 4,
-                    }, {
-                        name: 5,
-                    }, {
-                        name: 6,
-                    }, {
-                        name: 7,
-                    }, {
-                        name: 8,
-                    }, {
-                        name: 9,
-                    }, {
-                        name: 10,
-                    },
-                ],
+                inputValue: '',
             }
         }
     }
 </script>
 
 <style lang="scss" scoped>
-    @import "../../../style/CSForSupport/cs-for-support";
+    @import "../../../style/CSForSupport/cs-communicate-panel";
 </style>

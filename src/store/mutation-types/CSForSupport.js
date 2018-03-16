@@ -11,3 +11,7 @@ export const FOCUS_USER = 'FOCUS_USER';
 export const GET_HISTORY_RES = 'GET_HISTORY_RES';
 
 export const CHANGE_MSG_STORE = 'CHANGE_MSG_STORE';
+
+
+// -----------
+export const CommunicatePanelShow = 'CommunicatePanelShow';

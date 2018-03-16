@@ -1,5 +1,5 @@
 <template>
-    <div class="CommunicatePanel">
+    <div class="CommunicatePanel" :class="{'show': getShowState}">
         <msg-content
             :msgList="msgList"
         ></msg-content>
@@ -75,10 +75,16 @@
                     },
                 ],
             }
+        },
+
+        computed: {
+            getShowState() {
+                return this.$store.state.cs.communicatePanelShow;
+            }
         }
     }
 </script>
 
 <style lang="scss" scoped>
-    @import "../../../style/CSForSupport/cs-for-support";
+    @import "../../../style/CSForSupport/cs-communicate-panel";
 </style>
